@@ -1,0 +1,19 @@
+import {BUDGET,projects,strategies,type StrategyId} from './data';
+export type Draft={step:number;company:string;members:string[];strategy:StrategyId|'';selected:string[];price:string;rationale:string;justification:string;approved:boolean;submission?:{id:string;at:string}};
+export const STORAGE_KEY='crmup.draft.v1';
+export const COMPANIES_KEY='crmup.companies.v1';
+export const fresh=():Draft=>({step:0,company:'',members:[''],strategy:'',selected:[],price:'',rationale:'',justification:'',approved:false});
+export const words=(s:string)=>s.trim()?s.trim().split(/\s+/).length:0;
+export const total=(ids:string[])=>projects.filter(p=>ids.includes(p.id)).reduce((a,p)=>a+p.cost,0);
+export function toggle(ids:string[],id:string){if(ids.includes(id))return {ids:ids.filter(x=>x!==id),error:''};const p=projects.find(x=>x.id===id);if(!p)return {ids,error:'Unknown project.'};if(ids.length>=10)return {ids,error:'Your portfolio already contains 10 projects. Remove one before adding another.'};if(total(ids)+p.cost>BUDGET)return {ids,error:'This investment would exceed your £60m budget. Remove a project to free up funds.'};return {ids:[...ids,id],error:''};}
+export const validPrice=(s:string)=>/^\d+$/.test(s)&&Number.isSafeInteger(Number(s))&&Number(s)>0;
+export function validate(d:Draft,stage:number,used:string[]=[]):string[]{const errors:string[]=[];
+if(stage===1||stage===5){if(!d.company.trim())errors.push('Enter your company name.');if(used.includes(d.company.trim().toLocaleLowerCase()))errors.push('This company name has already been submitted in this browser session. Choose a unique name.');if(d.members.length<1||d.members.length>6||d.members.some(m=>!m.trim()))errors.push('Enter the full name of every team member (1–6 members).');if(new Set(d.members.map(m=>m.trim().toLocaleLowerCase())).size!==d.members.length)errors.push('Team member names must be unique.');}
+if(stage===2||stage===5)if(!strategies.some(s=>s.id===d.strategy))errors.push('Select one competitive strategy.');
+if(stage===3||stage===5){if(d.selected.length!==10||new Set(d.selected).size!==10)errors.push('Select exactly 10 different projects.');if(d.selected.some(id=>!projects.some(p=>p.id===id)))errors.push('Your portfolio contains an unknown project.');if(total(d.selected)>BUDGET)errors.push('Project investment must stay within £60m.');}
+if(stage===4||stage===5){if(!validPrice(d.price))errors.push('Enter a positive whole-pound selling price.');if(words(d.rationale)>300)errors.push('Keep your pricing rationale to 300 words or fewer.');}
+if(stage===5){if(words(d.justification)<100||words(d.justification)>250)errors.push('Write a strategic justification of 100–250 words.');if(!d.approved)errors.push('Confirm that your executive team has approved these decisions.');}return errors;}
+export const londonTime=(iso:string)=>new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',dateStyle:'long',timeStyle:'long'}).format(new Date(iso));
+export function finalise(d:Draft,used:string[]=[]):Draft{const errors=validate(d,5,used);if(errors.length)throw new Error(errors.join(' '));return {...d,company:d.company.trim(),members:d.members.map(m=>m.trim()),step:6,submission:{id:crypto.randomUUID(),at:new Date().toISOString()}};}
+export function readDraft(storage:Pick<Storage,'getItem'>):Draft{try{const raw=JSON.parse(storage.getItem(STORAGE_KEY)||'null');if(!raw||typeof raw.company!=='string'||!Array.isArray(raw.members)||!raw.members.every((v:unknown)=>typeof v==='string')||!Array.isArray(raw.selected)||!raw.selected.every((v:unknown)=>typeof v==='string'))return fresh();const d={...fresh(),...raw};if(!Number.isInteger(d.step)||d.step<0||d.step>6)return fresh();if(d.step===6&&(!d.submission||validate(d,5).length))d.step=5;return d;}catch{return fresh();}}
+export function saveDraft(storage:Pick<Storage,'setItem'>,d:Draft){storage.setItem(STORAGE_KEY,JSON.stringify(d));}
