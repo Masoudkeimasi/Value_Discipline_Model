@@ -1,5 +1,5 @@
 import {BUDGET,projects,strategies,type StrategyId} from './data';
-export type Draft={step:number;company:string;members:string[];strategy:StrategyId|'';selected:string[];price:string;rationale:string;justification:string;approved:boolean;submission?:{id:string;at:string}};
+export type Draft={step:number;company:string;members:string[];strategy:StrategyId|'';selected:string[];price:string;rationale:string;justification:string;approved:boolean;submission?:{id:string;at:string};receipt?:{submissionId:string;receivedAt:string}};
 export const STORAGE_KEY='crmup.draft.v1';
 export const COMPANIES_KEY='crmup.companies.v1';
 export const fresh=():Draft=>({step:0,company:'',members:[''],strategy:'',selected:[],price:'',rationale:'',justification:'',approved:false});

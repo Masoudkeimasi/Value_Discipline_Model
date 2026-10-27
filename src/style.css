@@ -13,3 +13,5 @@
 .strategy-card .market-facts{margin-top:auto}
 @media(max-width:1000px){.strategy-card .market-facts{gap:16px 10px}.strategy-card .market-facts dd{font-size:17px}.strategy-card .market-facts dt{font-size:9px}}
 @media(max-width:720px){.strategy-card .market-facts dd{font-size:20px}.strategy-card .market-facts dt{font-size:10px}}
+
+.collection-notice{display:flex;flex-direction:column;align-items:flex-start;text-align:left;overflow-wrap:anywhere}.collection-notice strong{font-size:13px}.collection-notice span{font-size:11px}.collection-notice button{margin-top:8px}
