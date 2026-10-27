@@ -1,4 +1,4 @@
-export const BUDGET = 60000000;
+export const BUDGET = 75000000;
 export const strategies = [
 {id:'efficiency',name:'Operational Excellence',headline:'Win Through Efficiency',description:'Compete by delivering reliable, convenient and affordable CRM software at scale.',priorities:['Cost efficiency','Streamlined operations','Standardisation','Speed and convenience','Reliable service delivery'],promise:'Dependable CRM software without unnecessary complexity or cost.',market:80000,cost:42000,fulfilmentRate:0.75,fixedOperatingCost:150000000},
 {id:'innovation',name:'Product Leadership',headline:'Win Through Innovation',description:'Compete by offering advanced technologies, distinctive product features and continuous innovation.',priorities:['Product innovation','Advanced AI functionality','Superior user experience','Research and development','Rapid development of new capabilities'],promise:'The next generation of intelligent CRM technology.',market:40000,cost:110000,fulfilmentRate:0.80,fixedOperatingCost:170000000},

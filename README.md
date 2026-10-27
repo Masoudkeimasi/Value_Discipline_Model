@@ -1,6 +1,6 @@
 # CRMup: The Value Discipline Challenge
 
-A responsive, seven-stage classroom strategy simulation built with React, TypeScript, Vite, Tailwind CSS and Lucide. Students register a team, choose a value discipline, invest in exactly ten projects within £60m, price their product, justify their choices and download genuine PDF and XLSX decision packages. No account, database or paid service is required.
+A responsive, seven-stage classroom strategy simulation built with React, TypeScript, Vite, Tailwind CSS and Lucide. Students register a team, choose a value discipline, invest in exactly ten projects within £75m, price their product, justify their choices and download genuine PDF and XLSX decision packages. No account, database or paid service is required.
 
 ## Run locally
 
@@ -58,6 +58,6 @@ Model and exporter modules are separate from UI so a future authenticated submis
 | Product Leadership | 40,000 | 80% | £110,000 | £170m |
 | Customer Intimacy | 10,000 | 90% | £130,000 | £170m |
 
-The shared source is `src/data.ts`: `market`, `fulfilmentRate` (numeric fraction), `cost` (GBP per signed firm), and `fixedOperatingCost` (GBP annually). All four fields appear on the welcome, strategy, pricing and review screens and in PDF and Excel reports. Annual fixed costs are not deducted from the £60m project investment budget. No performance calculations have been added.
+The shared source is `src/data.ts`: `market`, `fulfilmentRate` (numeric fraction), `cost` (GBP per signed firm), and `fixedOperatingCost` (GBP annually). All four fields appear on the welcome, strategy, pricing and review screens and in PDF and Excel reports. Annual fixed costs are not deducted from the £75m project investment budget. No performance calculations have been added.
 
 The Lecturer Import sheet preserves its original 49 columns and appends `Potential_Firms`, `Fulfilment_Rate`, `Delivery_Selling_Cost_Per_Signed_Firm_GBP` and `Annual_Fixed_Operating_Cost_GBP`. Rates are numeric fractions formatted as percentages; costs remain numeric GBP cells.
