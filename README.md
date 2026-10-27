@@ -73,3 +73,5 @@ Each confirmed team submission creates one row containing all decisions. Browser
 - `src/collection.ts`: browser receipt/status client
 - `google-apps-script/Code.gs`: private-sheet receiver with locking and UUID deduplication
 - `netlify.toml`: function route and build configuration
+
+Production TypeScript checks exclude test files but include the Netlify function. `npm test` separately type-checks test code using `tsconfig.test.json` before running Vitest. Node.js type declarations are an explicit development dependency so clean CI installs do not rely on previously installed packages.
