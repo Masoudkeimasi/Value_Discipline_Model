@@ -49,3 +49,15 @@ Finalisation assigns a UUID and timestamp. Display and report timestamps use Eur
 The XLSX workbook includes Team Submission, Selected Projects and Lecturer Import. Currency values are numeric cells, all 30 selection indicators are binary, and no concealed formulas or grading data are included. The PDF contains the same company, strategy, investment and rationale information.
 
 Model and exporter modules are separate from UI so a future authenticated submission API, classroom dashboard or simulation rounds can consume validated records without changing the student decision workflow.
+
+## Strategy market data
+
+| Strategy | Potential firms | Fulfilment rate | Delivery + selling cost per signed firm | Annual fixed operating cost |
+| --- | ---: | ---: | ---: | ---: |
+| Operational Excellence | 80,000 | 75% | £42,000 | £150m |
+| Product Leadership | 40,000 | 80% | £110,000 | £170m |
+| Customer Intimacy | 10,000 | 90% | £130,000 | £170m |
+
+The shared source is `src/data.ts`: `market`, `fulfilmentRate` (numeric fraction), `cost` (GBP per signed firm), and `fixedOperatingCost` (GBP annually). All four fields appear on the welcome, strategy, pricing and review screens and in PDF and Excel reports. Annual fixed costs are not deducted from the £60m project investment budget. No performance calculations have been added.
+
+The Lecturer Import sheet preserves its original 49 columns and appends `Potential_Firms`, `Fulfilment_Rate`, `Delivery_Selling_Cost_Per_Signed_Firm_GBP` and `Annual_Fixed_Operating_Cost_GBP`. Rates are numeric fractions formatted as percentages; costs remain numeric GBP cells.

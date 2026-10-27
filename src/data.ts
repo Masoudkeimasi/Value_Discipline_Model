@@ -1,8 +1,8 @@
 export const BUDGET = 60000000;
 export const strategies = [
-{id:'efficiency',name:'Operational Excellence',headline:'Win Through Efficiency',description:'Compete by delivering reliable, convenient and affordable CRM software at scale.',priorities:['Cost efficiency','Streamlined operations','Standardisation','Speed and convenience','Reliable service delivery'],promise:'Dependable CRM software without unnecessary complexity or cost.',market:1000000,cost:30000},
-{id:'innovation',name:'Product Leadership',headline:'Win Through Innovation',description:'Compete by offering advanced technologies, distinctive product features and continuous innovation.',priorities:['Product innovation','Advanced AI functionality','Superior user experience','Research and development','Rapid development of new capabilities'],promise:'The next generation of intelligent CRM technology.',market:500000,cost:70000},
-{id:'relationships',name:'Customer Intimacy',headline:'Win Through Relationships',description:'Compete by understanding individual customer needs and offering personalised solutions, tailored support and long-term partnerships.',priorities:['Customisation','Personal relationships','Consultative selling','Customer support','Long-term customer success'],promise:'CRM solutions designed around your business.',market:100000,cost:100000}
+{id:'efficiency',name:'Operational Excellence',headline:'Win Through Efficiency',description:'Compete by delivering reliable, convenient and affordable CRM software at scale.',priorities:['Cost efficiency','Streamlined operations','Standardisation','Speed and convenience','Reliable service delivery'],promise:'Dependable CRM software without unnecessary complexity or cost.',market:80000,cost:42000,fulfilmentRate:0.75,fixedOperatingCost:150000000},
+{id:'innovation',name:'Product Leadership',headline:'Win Through Innovation',description:'Compete by offering advanced technologies, distinctive product features and continuous innovation.',priorities:['Product innovation','Advanced AI functionality','Superior user experience','Research and development','Rapid development of new capabilities'],promise:'The next generation of intelligent CRM technology.',market:40000,cost:110000,fulfilmentRate:0.80,fixedOperatingCost:170000000},
+{id:'relationships',name:'Customer Intimacy',headline:'Win Through Relationships',description:'Compete by understanding individual customer needs and offering personalised solutions, tailored support and long-term partnerships.',priorities:['Customisation','Personal relationships','Consultative selling','Customer support','Long-term customer success'],promise:'CRM solutions designed around your business.',market:10000,cost:130000,fulfilmentRate:0.90,fixedOperatingCost:170000000}
 ] as const;
 export type StrategyId = typeof strategies[number]['id'];
 const rows: [string,number,string][] = [
@@ -42,3 +42,5 @@ const order=[14,2,23,8,18,27,5,11,29,1,16,24,9,20,22,4,12,26,7,15,30,3,19,21,10,
 export const mixedProjects=order.map(i=>projects[i-1]);
 export const money=(n:number)=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(n);
 export const millions=(n:number)=>`£${n/1000000}m`;
+
+export const percent=(n:number)=>new Intl.NumberFormat('en-GB',{style:'percent',maximumFractionDigits:0}).format(n);
