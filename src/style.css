@@ -15,3 +15,12 @@
 @media(max-width:720px){.strategy-card .market-facts dd{font-size:20px}.strategy-card .market-facts dt{font-size:10px}}
 
 .collection-notice{display:flex;flex-direction:column;align-items:flex-start;text-align:left;overflow-wrap:anywhere}.collection-notice strong{font-size:13px}.collection-notice span{font-size:11px}.collection-notice button{margin-top:8px}
+
+/* Approved developer credit and lecturer acknowledgement. */
+.developer-credit{font-size:11px;line-height:1.8;max-width:410px;margin:0 0 24px;color:#647174}
+.developer-credit strong{color:#365952}
+.developer-credit a{color:#14695e;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.lecturer-thanks{max-width:650px;margin:28px auto 0;padding:22px;border:1px solid #d3e2d3;border-radius:8px;background:#f0f6ef}
+.lecturer-thanks h2{font-size:22px;margin-bottom:12px}
+.lecturer-thanks p{font-size:13px;margin-bottom:12px}
+.lecturer-thanks>strong{font-size:13px;color:#365952}
